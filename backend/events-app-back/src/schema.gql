@@ -1,0 +1,92 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Event {
+  """Event ID"""
+  id: String!
+
+  """Event name"""
+  name: String!
+
+  """Event begins"""
+  startDate: String!
+
+  """Event ends"""
+  endDate: String!
+
+  """Event description"""
+  description: String!
+
+  """Event location"""
+  locationId: String!
+}
+
+type Location {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+type Query {
+  events: [Event!]!
+  event(id: String!): Event!
+  locations: [Location!]!
+  location(id: Int!): Location!
+}
+
+type Mutation {
+  createEvent(createEventInput: CreateEventInput!): Event!
+  updateEvent(updateEventInput: UpdateEventInput!): Event!
+  removeEvent(id: Int!): Event!
+  createLocation(createLocationInput: CreateLocationInput!): Location!
+  updateLocation(updateLocationInput: UpdateLocationInput!): Location!
+  removeLocation(id: Int!): Location!
+}
+
+input CreateEventInput {
+  """Event name"""
+  name: String!
+
+  """Event begins"""
+  startDate: String!
+
+  """Event ends"""
+  endDate: String!
+
+  """Event description"""
+  description: String!
+
+  """Event location"""
+  locationId: String!
+}
+
+input UpdateEventInput {
+  """Event name"""
+  name: String!
+
+  """Event begins"""
+  startDate: String!
+
+  """Event ends"""
+  endDate: String!
+
+  """Event description"""
+  description: String!
+
+  """Event location"""
+  locationId: String!
+
+  """Event ID"""
+  id: String!
+}
+
+input CreateLocationInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdateLocationInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}

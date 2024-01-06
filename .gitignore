@@ -1,0 +1,79 @@
+# API
+# compiled output
+backend/events-app-back/dist
+backend/events-app-back/node_modules
+
+# Logs
+backend/events-app-back/logs
+backend/events-app-back/*.log
+backend/events-app-back/npm-debug.log*
+backend/events-app-back/pnpm-debug.log*
+backend/events-app-back/yarn-debug.log*
+backend/events-app-back/yarn-error.log*
+backend/events-app-back/lerna-debug.log*
+
+# OS
+backend/events-app-back/.DS_Store
+
+# Tests
+backend/events-app-back/coverage
+backend/events-app-back/.nyc_output
+
+# IDEs and editors
+backend/events-app-back/.idea
+backend/events-app-back/.project
+backend/events-app-back/.classpath
+backend/events-app-back/.c9/
+backend/events-app-back/*.launch
+backend/events-app-back/.settings/
+backend/events-app-back/*.sublime-workspace
+
+# IDE - VSCode
+backend/events-app-back/.vscode/*
+backend/events-app-back/!.vscode/settings.json
+backend/events-app-back/!.vscode/tasks.json
+backend/events-app-back/!.vscode/launch.json
+backend/events-app-back/!.vscode/extensions.json
+
+
+# CLIENT
+# Compiled output
+/events-app-client/dist
+/events-app-client/tmp
+/events-app-client/out-tsc
+/events-app-client/bazel-out
+
+# Node
+/events-app-client/node_modules
+/events-app-client/npm-debug.log
+/events-app-client/yarn-error.log
+
+# IDEs and editors
+/events-app-client/.idea/
+/events-app-client/.project
+/events-app-client/.classpath
+/events-app-client/.c9/
+/events-app-client/*.launch
+/events-app-client/.settings/
+/events-app-client/*.sublime-workspace
+
+# Visual Studio Code
+/events-app-client/.vscode/*
+/events-app-client/!.vscode/settings.json
+/events-app-client/!.vscode/tasks.json
+/events-app-client/!.vscode/launch.json
+/events-app-client/!.vscode/extensions.json
+/events-app-client/.history/*
+
+# Miscellaneous
+/events-app-client/.angular/cache
+/events-app-client/.sass-cache/
+/events-app-client/connect.lock
+/events-app-client/coverage
+/events-app-client/libpeerconnection.log
+/events-app-client/testem.log
+/events-app-client/typings
+
+# System files
+/events-app-client/.DS_Store
+/events-app-client/Thumbs.db

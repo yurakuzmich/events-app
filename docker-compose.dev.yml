@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend/events-app-back
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    # volumes:
+    #   - ./backend/events-app-back:/app
+
+  client:
+    build:
+      context: ./events-app-client
+      dockerfile: Dockerfile.dev
+    ports:
+      - "8080:4200"
+    volumes:
+      - ./events-app-client:/usr/src/app
