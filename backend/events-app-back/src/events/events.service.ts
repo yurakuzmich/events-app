@@ -49,7 +49,11 @@ export class EventsService {
   }
 
   update(id: UUID, updateEventInput: UpdateEventInput) {
-    return `This action updates a #${id} event`;
+    const eventToUpdateIndex = events.findIndex((event) => event.id === id);
+
+    events[eventToUpdateIndex] = { ...events, ...updateEventInput };
+
+    return events[eventToUpdateIndex];
   }
 
   remove(id: UUID) {
