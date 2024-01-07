@@ -23,8 +23,14 @@ type Event {
 }
 
 type Location {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  """Location ID"""
+  id: String!
+
+  """Location Name"""
+  name: String!
+
+  """Location Description"""
+  description: String!
 }
 
 type Query {
@@ -32,7 +38,7 @@ type Query {
   event(id: String!): Event!
   filter(starts: String, ends: String, locationId: String): [Event!]!
   locations: [Location!]!
-  location(id: Int!): Location!
+  location(id: String!): Location!
 }
 
 type Mutation {
@@ -82,12 +88,20 @@ input UpdateEventInput {
 }
 
 input CreateLocationInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  """Location Name"""
+  name: String!
+
+  """Location Description"""
+  description: String!
 }
 
 input UpdateLocationInput {
-  """Example field (placeholder)"""
-  exampleField: Int
-  id: Int!
+  """Location Name"""
+  name: String!
+
+  """Location Description"""
+  description: String!
+
+  """Location ID"""
+  id: String!
 }

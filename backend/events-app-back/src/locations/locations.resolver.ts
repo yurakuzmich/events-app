@@ -9,7 +9,9 @@ export class LocationsResolver {
   constructor(private readonly locationsService: LocationsService) {}
 
   @Mutation(() => Location)
-  createLocation(@Args('createLocationInput') createLocationInput: CreateLocationInput) {
+  createLocation(
+    @Args('createLocationInput') createLocationInput: CreateLocationInput,
+  ) {
     return this.locationsService.create(createLocationInput);
   }
 
@@ -19,17 +21,22 @@ export class LocationsResolver {
   }
 
   @Query(() => Location, { name: 'location' })
-  findOne(@Args('id', { type: () => Int }) id: number) {
+  findOne(@Args('id', { type: () => String }) id: string) {
     return this.locationsService.findOne(id);
   }
 
   @Mutation(() => Location)
-  updateLocation(@Args('updateLocationInput') updateLocationInput: UpdateLocationInput) {
-    return this.locationsService.update(updateLocationInput.id, updateLocationInput);
+  updateLocation(
+    @Args('updateLocationInput') updateLocationInput: UpdateLocationInput,
+  ) {
+    return this.locationsService.update(
+      updateLocationInput.id,
+      updateLocationInput,
+    );
   }
 
   @Mutation(() => Location)
-  removeLocation(@Args('id', { type: () => Int }) id: number) {
+  removeLocation(@Args('id', { type: () => Int }) id: string) {
     return this.locationsService.remove(id);
   }
 }
