@@ -25,6 +25,16 @@ export class EventsResolver {
     return this.eventsService.findOne(id);
   }
 
+  @Query(() => [Event], { name: 'filter' })
+  filter(
+    @Args('starts', { type: () => String, nullable: true }) start?: string,
+    @Args('ends', { type: () => String, nullable: true }) end?: string,
+    @Args('locationId', { type: () => String, nullable: true })
+    locationId?: UUID,
+  ) {
+    return this.eventsService.filter(start, end, locationId);
+  }
+
   @Mutation(() => Event)
   updateEvent(@Args('updateEventInput') updateEventInput: UpdateEventInput) {
     return this.eventsService.update(updateEventInput.id, updateEventInput);

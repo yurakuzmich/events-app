@@ -29,6 +29,25 @@ export class EventsService {
     return event;
   }
 
+  filter(start: string, end: string, locationId: UUID) {
+    const filteredEvents = events.filter((event) => {
+      const rangeStart = start ? new Date(start).getTime() : 0;
+      const rangeEnd = end ? new Date(end).getTime() : Date.now();
+      const eventStarts = new Date(event.startDate).getTime();
+
+      const isEventInsideRange =
+        eventStarts > rangeStart && eventStarts < rangeEnd;
+
+      const isEventInLocation = locationId
+        ? event.locationId === locationId
+        : true;
+
+      return isEventInsideRange && isEventInLocation;
+    });
+
+    return filteredEvents;
+  }
+
   update(id: UUID, updateEventInput: UpdateEventInput) {
     return `This action updates a #${id} event`;
   }
