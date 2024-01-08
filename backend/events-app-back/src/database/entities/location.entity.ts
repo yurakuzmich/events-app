@@ -12,6 +12,6 @@ export class LocationDBEntity {
   @Column()
   description: string;
 
-  @OneToMany(() => EventDBEntity, event => event.location, {onDelete: 'CASCADE'})
+  @OneToMany(() => EventDBEntity, event => event.locationId, {onDelete: 'CASCADE'})
   events: EventDBEntity[];
 }

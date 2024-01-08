@@ -19,5 +19,5 @@ export class Event {
   description: string;
 
   @Field(() => String, { description: 'Event location' })
-  locationId: UUID;
+  locationId: UUID | null;
 }

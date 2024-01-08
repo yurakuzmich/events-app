@@ -20,5 +20,5 @@ export class EventDBEntity {
 
   @ManyToOne(() => LocationDBEntity, location => location.id, {onDelete: 'SET NULL'})
   @JoinColumn({name: 'locationId'})
-  location: LocationDBEntity;
+  locationId: string;
 }
