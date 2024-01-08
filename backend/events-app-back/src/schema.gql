@@ -47,7 +47,7 @@ type Mutation {
   removeEvent(id: Int!): Event!
   createLocation(createLocationInput: CreateLocationInput!): Location!
   updateLocation(updateLocationInput: UpdateLocationInput!): Location!
-  removeLocation(id: Int!): Location!
+  removeLocation(id: String!): Location!
 }
 
 input CreateEventInput {
@@ -97,10 +97,10 @@ input CreateLocationInput {
 
 input UpdateLocationInput {
   """Location Name"""
-  name: String!
+  name: String
 
   """Location Description"""
-  description: String!
+  description: String
 
   """Location ID"""
   id: String!

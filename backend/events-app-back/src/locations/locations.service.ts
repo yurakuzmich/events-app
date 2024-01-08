@@ -1,47 +1,60 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { CreateLocationInput } from './dto/create-location.input';
 import { UpdateLocationInput } from './dto/update-location.input';
+import { LocationDBService } from '../database/services/locations-db.service';
 
 import { locations } from 'src/mock-data/locations';
 import { randomUUID } from 'crypto';
 
 @Injectable()
 export class LocationsService {
-  create(createLocationInput: CreateLocationInput) {
+
+  constructor(
+    @Inject(LocationDBService) private dbService: LocationDBService,
+  ) {}
+
+  async create(createLocationInput: CreateLocationInput) {
     const newLocation = {
-      id: randomUUID(),
       name: createLocationInput.name,
       description: createLocationInput.description,
     };
 
-    locations.push(newLocation);
-
-    return newLocation;
+    try {
+      return await this.dbService.create(newLocation);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
-  findAll() {
-    return locations;
+  async findAll() {
+    try {
+      return await this.dbService.findAll();
+    } catch (error) {
+      console.log(error);
+    }
   }
 
-  findOne(id: string) {
-    const location = locations.find((location) => location.id === id);
-    return location;
+  async findOne(id: string) {
+    try {
+      return await this.dbService.findOne(id)
+    } catch (error) {
+      console.log(error);
+    }
   }
 
-  update(id: string, updateLocationInput: UpdateLocationInput) {
-    const locationToUpdateIndex = locations.findIndex(
-      (location) => location.id === id,
-    );
-
-    locations[locationToUpdateIndex] = { ...locations, ...updateLocationInput };
-
-    return locations[locationToUpdateIndex];
+  async update(id: string, updateLocationInput: UpdateLocationInput) {
+    try {
+      return await this.dbService.update(id, updateLocationInput);
+    } catch (error) {
+      console.log(error)
+    }
   }
 
-  remove(id: string) {
-    const elementToRemoveIndex = locations.findIndex(
-      (location) => location.id === id,
-    );
-    return locations.splice(elementToRemoveIndex, 1);
+  async remove(id: string) {
+    try {
+      return await this.dbService.remove(id);
+    } catch (error) {
+      console.log(error)
+    }
   }
 }

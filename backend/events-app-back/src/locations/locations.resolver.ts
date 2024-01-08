@@ -36,7 +36,7 @@ export class LocationsResolver {
   }
 
   @Mutation(() => Location)
-  removeLocation(@Args('id', { type: () => Int }) id: string) {
+  removeLocation(@Args('id', { type: () => String }) id: string) {
     return this.locationsService.remove(id);
   }
 }

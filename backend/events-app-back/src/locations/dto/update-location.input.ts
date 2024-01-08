@@ -7,9 +7,9 @@ export class UpdateLocationInput extends PartialType(CreateLocationInput) {
   @Field(() => String, { description: 'Location ID' })
   id: UUID;
 
-  @Field(() => String, { description: 'Location Name' })
-  name: string;
+  @Field(() => String, { description: 'Location Name', nullable: true })
+  name?: string;
 
-  @Field(() => String, { description: 'Location Description' })
-  description: string;
+  @Field(() => String, { description: 'Location Description', nullable: true })
+  description?: string;
 }
