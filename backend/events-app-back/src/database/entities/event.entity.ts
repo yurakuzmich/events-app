@@ -18,13 +18,7 @@ export class EventDBEntity {
   @Column()
   description: string;
 
-  // @Column('uuid')
-  // locationId: string;
-
-  // @OneToOne(() => LocationDBEntity, location => location.id)
-  // locationId: LocationDBEntity
-
-  @ManyToOne(() => LocationDBEntity, location => location.id, {onDelete: 'NO ACTION'})
+  @ManyToOne(() => LocationDBEntity, location => location.id, {onDelete: 'SET NULL'})
   @JoinColumn({name: 'locationId'})
   location: LocationDBEntity;
 }

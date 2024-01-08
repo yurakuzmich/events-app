@@ -3,9 +3,6 @@ import { CreateLocationInput } from './dto/create-location.input';
 import { UpdateLocationInput } from './dto/update-location.input';
 import { LocationDBService } from '../database/services/locations-db.service';
 
-import { locations } from 'src/mock-data/locations';
-import { randomUUID } from 'crypto';
-
 @Injectable()
 export class LocationsService {
 

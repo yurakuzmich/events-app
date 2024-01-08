@@ -1,62 +1,65 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { CreateEventInput } from './dto/create-event.input';
 import { UpdateEventInput } from './dto/update-event.input';
-import { UUID, randomUUID } from 'crypto';
+import { UUID } from 'crypto';
 
-import { events } from './../mock-data/events';
+import { EventsDBService } from 'src/database/services/events-db.service';
 
 @Injectable()
 export class EventsService {
-  create(createEventInput: CreateEventInput) {
+
+  constructor(
+    @Inject(EventsDBService) private dbService: EventsDBService,
+  ) {}
+
+  async create(createEventInput: CreateEventInput) {
     const newEvent = {
-      id: randomUUID(),
       name: createEventInput.name,
       startDate: createEventInput.startDate,
       endDate: createEventInput.endDate,
       description: createEventInput.description,
-      locationId: randomUUID(),
+      locationId: createEventInput.locationId,
     };
-    events.push(newEvent);
-    return newEvent;
+
+    console.log(newEvent);
+    try {
+      return await this.dbService.create(newEvent);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
-  findAll() {
-    return events;
+  async findAll() {
+    try {
+      return await this.dbService.findAll();
+    } catch (error) {
+      console.log(error);
+    }
   }
 
-  findOne(id: UUID) {
-    const event = events.find((e) => e.id === id);
-    return event;
+  async findOne(id: UUID) {
+    try {
+      return await this.dbService.findOne(id)
+    } catch (error) {
+      console.log(error);
+    }
   }
 
-  filter(start: string, end: string, locationId: UUID) {
-    const filteredEvents = events.filter((event) => {
-      const rangeStart = start ? new Date(start).getTime() : 0;
-      const rangeEnd = end ? new Date(end).getTime() : Date.now();
-      const eventStarts = new Date(event.startDate).getTime();
+  async filter(start: string, end: string, locationId: UUID) {}
 
-      const isEventInsideRange =
-        eventStarts > rangeStart && eventStarts < rangeEnd;
-
-      const isEventInLocation = locationId
-        ? event.locationId === locationId
-        : true;
-
-      return isEventInsideRange && isEventInLocation;
-    });
-
-    return filteredEvents;
+  async update(id: UUID, updateEventInput: UpdateEventInput) {
+    try {
+      return await this.dbService.update(id, updateEventInput);
+    } catch (error) {
+      console.log(error)
+    }
   }
 
-  update(id: UUID, updateEventInput: UpdateEventInput) {
-    const eventToUpdateIndex = events.findIndex((event) => event.id === id);
-
-    events[eventToUpdateIndex] = { ...events, ...updateEventInput };
-
-    return events[eventToUpdateIndex];
-  }
-
-  remove(id: UUID) {
-    return events.filter((e) => e.id !== id);
+  async remove(id: UUID) {
+    try {
+      return await this.dbService.remove(id);
+    } catch (error) {
+      console.log(error)
+    }
   }
 }
