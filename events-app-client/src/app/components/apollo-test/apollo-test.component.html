@@ -1,0 +1,19 @@
+<div *ngIf="loading">Loading...</div>
+<div *ngIf="error">Error :(</div>
+<div *ngIf="events">
+  <h2>Events</h2>
+  <ul>
+  <li *ngFor="let event of events">
+    {{ event.name }} : {{ event.description.slice(0, 15) }} ... : {{ event.startDate }}
+  </li>
+  </ul>
+</div>
+<hr>
+<div *ngIf="locations">
+  <h2>Locations</h2>
+  <ul>
+  <li *ngFor="let location of locations">
+    {{ location.id.slice(0, 10) }} ... : {{ location.name }}
+  </li>
+  </ul>
+</div>
