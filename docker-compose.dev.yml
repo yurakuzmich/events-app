@@ -27,6 +27,8 @@ services:
     build:
       context: ./events-app-client
       dockerfile: Dockerfile.dev
+    working_dir: /usr/src/app/node_modules
+    command: ["./@angular/cli/bin/ng", "serve", "--host", "0.0.0.0"]
     ports:
       - "8080:4200"
     volumes:

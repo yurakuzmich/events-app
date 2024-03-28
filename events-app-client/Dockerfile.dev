@@ -1,6 +1,6 @@
 FROM node:18
 
-WORKDIR /usr/src/app
+WORKDIR /usr/src/app/node_modules
 
 COPY package*.json ./
 
@@ -8,4 +8,4 @@ RUN npm install
 
 EXPOSE 4200
 
-CMD ["./node_modules/@angular/cli/bin/ng", "serve", "--host", "0.0.0.0"]
+CMD ["./@angular/cli/bin/ng", "serve", "--host", "0.0.0.0"]
